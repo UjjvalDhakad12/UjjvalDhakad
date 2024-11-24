@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
+    <!-- Import Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        /* Footer Container Styling */
+        .footer-container {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Content Inside Footer */
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Social Media Icons Styling */
+        .footer-social-icons {
+            margin-bottom: 1rem;
+        }
+
+        /* Each Icon Link Styling */
+        .footer-icon {
+            margin: 0 10px;
+            text-decoration: none;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Hover Effects for Icons */
+        .footer-icon:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        /* Footer Text Styling */
+        .footer-text {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-social-icons">
+                <!-- Instagram Link -->
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="footer-icon"
+                    aria-label="Instagram">
+                    <span class="material-icons" style="font-size: 2rem; color: #E4405F;">instagram</span>
+                </a>
+                <!-- Facebook Link -->
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="footer-icon"
+                    aria-label="Facebook">
+                    <span class="material-icons" style="font-size: 2rem; color: #1877F2;">facebook</span>
+                </a>
+            </div>
+            <div class="footer-text">
+                <p>&copy; 2024 copy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // You can add any JavaScript functionality here if needed
+        // For now, the footer only contains static content with external links to social media
+    </script>
+</body>
+
+</html>

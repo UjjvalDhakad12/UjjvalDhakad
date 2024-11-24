@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Selection</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Box Container */
+        .box-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #FFFCF9;
+            border: 1px solid #FF6978;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 20px auto;
+            margin-top: 5rem;
+        }
+
+        /* Heading */
+        .box-heading {
+            font-size: 1.5rem;
+            color: #FF6978;
+            margin-bottom: 15px;
+        }
+
+        /* Image Row */
+        .image-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 4rem;
+            margin-top: 15px;
+        }
+
+        /* Individual Image Box */
+        .image-box {
+            flex: 1 1 30%;
+            text-align: center;
+        }
+
+        /* Image Box Heading */
+        .image-heading {
+            font-size: 1.2rem;
+            color: #FF6978;
+            margin-bottom: 10px;
+        }
+
+        /* Clickable Image and Video Styling */
+        .clickable-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover Effects */
+        .clickable-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box-container">
+        <h2 class="box-heading">Click the Image Below</h2>
+        <div class="image-row">
+            <!-- Lottery Game -->
+            <div class="image-box">
+                <h3 class="image-heading">Lottery Game</h3>
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer" title="Play the Lottery Game">
+                    <img src="/p1.png" alt="Lottery Game" class="clickable-image">
+                </a>
+            </div>
+
+            <!-- Quiz Game -->
+            <div class="image-box">
+                <h3 class="image-heading">Quiz Game</h3>
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer" title="Play the Quiz Game">
+                    <img src="/p2.png" alt="Quiz Game" class="clickable-image">
+                </a>
+            </div>
+
+            <!-- Snake Game -->
+            <div class="image-box">
+                <h3 class="image-heading">Snake Game</h3>
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer" title="Play the Snake Game">
+                    <video src="/snake.mp4" alt="Snake Game" class="clickable-image" loop autoplay muted></video>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

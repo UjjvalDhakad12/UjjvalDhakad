@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujjval Dhakad's Roadmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #3f51b5;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            border-bottom: 10px solid #303f9f;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 50px;
+            font-weight: 700;
+        }
+
+        /* Stepper Section */
+        .stepper-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stepper-box {
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #3f51b5;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-label {
+            font-size: 24px;
+            font-weight: 600;
+            color: #3f51b5;
+        }
+
+        .step-description {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .step-buttons {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+
+        .step-button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .step-button:hover {
+            background-color: #303f9f;
+        }
+
+        .step-button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        /* Last Step Styling */
+        .last-step {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin-top: 40px;
+        }
+
+        .last-step button {
+            background-color: #4caf50;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #3f51b5;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        /* Animation for appearing steps */
+        .step-content {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Ujjval Dhakad's Roadmap</h1>
+    </div>
+
+    <!-- Stepper Section -->
+    <div class="stepper-container">
+        <div class="stepper-box">
+            <h2>My Development Journey</h2>
+
+            <!-- Step 1 -->
+            <div class="step step-content" id="step1">
+                <div class="step-label">HTML Structure</div>
+                <div class="step-description">In this step, you'll create the basic HTML structure for your web page,
+                    defining key elements like header, main content, and footer.</div>
+                <div class="step-buttons">
+                    <button class="step-button" onclick="nextStep(1)">Continue</button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step step-content" id="step2" style="display: none;">
+                <div class="step-label">CSS Styling</div>
+                <div class="step-description">Next, you'll apply styles using CSS to make the page look good. You can
+                    choose between external CSS, inline styles, or CSS-in-JS for styling your React components.</div>
+                <div class="step-buttons">
+                    <button class="step-button" onclick="nextStep(2)">Continue</button>
+                    <button class="step-button" onclick="prevStep(2)">Back</button>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step step-content" id="step3" style="display: none;">
+                <div class="step-label">JavaScript Functionality</div>
+                <div class="step-description">Now, you'll add JavaScript to your project to add interactivity. This
+                    could involve form validation, handling button clicks, or other user interactions.</div>
+                <div class="step-buttons">
+                    <button class="step-button" onclick="nextStep(3)">Continue</button>
+                    <button class="step-button" onclick="prevStep(3)">Back</button>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step step-content" id="step4" style="display: none;">
+                <div class="step-label">React Components</div>
+                <div class="step-description">You'll now refactor your app to use React components, which allow you to
+                    break the UI into reusable building blocks, making the app dynamic and interactive.</div>
+                <div class="step-buttons">
+                    <button class="step-button" onclick="nextStep(4)">Continue</button>
+                    <button class="step-button" onclick="prevStep(4)">Back</button>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step step-content" id="step5" style="display: none;">
+                <div class="step-label">Next.js Integration</div>
+                <div class="step-description">Next.js helps you with routing, server-side rendering, and API
+                    integration. You'll use Next.js for navigation and optimization of your app's performance.</div>
+                <div class="step-buttons">
+                    <button class="step-button" onclick="nextStep(5)">Continue</button>
+                    <button class="step-button" onclick="prevStep(5)">Back</button>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step step-content" id="step6" style="display: none;">
+                <div class="step-label">Node.js Backend</div>
+                <div class="step-description">Finally, Node.js is used to create a backend server. It helps you handle
+                    requests, store data, and provide an API for your frontend to interact with.</div>
+                <div class="step-buttons">
+                    <button class="step-button" onclick="finishSteps()">Finish</button>
+                    <button class="step-button" onclick="prevStep(6)">Back</button>
+                </div>
+            </div>
+
+            <!-- Last Step - Completion -->
+            <div id="completion" class="last-step" style="display: none;">
+                <h3>All steps completed - you're finished</h3>
+                <button class="step-button" onclick="resetSteps()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2024 Ujjval Dhakad | All rights reserved</p>
+    </div>
+
+    <script>
+        let currentStep = 0;
+
+        // Step navigation functions
+        function nextStep(step) {
+            // Hide current step
+            document.getElementById('step' + (currentStep + 1)).style.display = 'none';
+            // Show next step
+            document.getElementById('step' + (step + 1)).style.display = 'block';
+            currentStep = step;
+        }
+
+        function prevStep(step) {
+            // Hide current step
+            document.getElementById('step' + (step + 1)).style.display = 'none';
+            // Show previous step
+            document.getElementById('step' + step).style.display = 'block';
+            currentStep = step - 1;
+        }
+
+        function finishSteps() {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(step => step.style.display = 'none');
+            // Show completion message
+            document.getElementById('completion').style.display = 'block';
+        }
+
+        function resetSteps() {
+            // Hide completion message
+            document.getElementById('completion').style.display = 'none';
+            // Reset to first step
+            currentStep = 0;
+            document.getElementById('step1').style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>

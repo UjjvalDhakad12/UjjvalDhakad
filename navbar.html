@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujjval Dhakad</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body,
+        html {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-title {
+            font-size: 24px;
+            flex-grow: 1;
+            display: none;
+        }
+
+        .navbar-links a {
+            color: #FFFCF9;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .navbar-links a:hover {
+            color: #FFAA00;
+        }
+
+        /* Drawer */
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: -240px;
+            height: 100%;
+            width: 240px;
+            background-color: #333;
+            transition: 0.3s;
+            padding-top: 20px;
+        }
+
+        .drawer.open {
+            left: 0;
+        }
+
+        .drawer-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .drawer-links a {
+            color: #FFFCF9;
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .drawer-links a:hover {
+            background-color: #444;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Mobile styles */
+        .navbar-links {
+            display: flex;
+        }
+
+        .drawer-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+            }
+
+            .navbar-title {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <i class="fas fa-bars menu-icon" onclick="toggleDrawer()"></i>
+        <div class="navbar-title">Ujjval Dhakad</div>
+        <div class="navbar-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#games">Games</a>
+            <a href="#certificates">Certificates</a>
+        </div>
+    </div>
+
+    <!-- Drawer Menu -->
+    <div class="drawer" id="drawer">
+        <div class="drawer-title">Ujjval Dhakad</div>
+        <div class="drawer-links">
+            <a href="#home" onclick="closeDrawer()">Home</a>
+            <a href="#about" onclick="closeDrawer()">About</a>
+            <a href="#games" onclick="closeDrawer()">Games</a>
+            <a href="#certificates" onclick="closeDrawer()">Certificates</a>
+        </div>
+    </div>
+
+    <div class="mobile-menu">
+        <div class="navbar-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#games">Games</a>
+            <a href="#certificates">Certificates</a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="main-content" style="padding: 20px;">
+        <h2>Welcome to Ujjval Dhakad's Website</h2>
+        <p>Here you can learn more about me, explore games, and view certificates.</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Drawer Toggle Function
+        function toggleDrawer() {
+            const drawer = document.getElementById('drawer');
+            drawer.classList.toggle('open');
+        }
+
+        // Close Drawer when link is clicked
+        function closeDrawer() {
+            const drawer = document.getElementById('drawer');
+            drawer.classList.remove('open');
+        }
+
+        // Make navbar links responsive
+        window.addEventListener('resize', function () {
+            const navbarLinks = document.querySelector('.navbar-links');
+            if (window.innerWidth <= 768) {
+                navbarLinks.style.display = 'none';
+            } else {
+                navbarLinks.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+
+</html>

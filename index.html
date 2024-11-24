@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Multi-Page App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            color: #FF6978;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar-container"></div> <!-- Navbar content will be inserted here -->
+
+    <div id="content-container"></div> <!-- Page content will be inserted here -->
+
+    <div id="footer-container"></div> <!-- Footer content will be inserted here -->
+
+    <script>
+        // Function to fetch and insert HTML content into a specific element by ID
+        function loadHTML(elementId, filePath) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => document.getElementById(elementId).innerHTML = data)
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+
+        // Load navbar, home page content, and footer dynamically
+        window.onload = function () {
+            loadHTML('navbar-container', 'navbar.html');   // Load navbar
+            loadHTML('content-container', 'home.html');    // Load home page content
+            loadHTML('footer-container', 'footer.html');   // Load footer
+        };
+    </script>
+
+</body>
+
+</html>
