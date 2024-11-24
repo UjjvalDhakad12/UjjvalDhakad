@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar - Ujjval Dhakad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body,
+        html {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            /* Keep links aligned to the right */
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            color: #FFAA00;
+            background-color: #444;
+            border-radius: 5px;
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            display: none;
+            color: white;
+            margin-left: 15px;
+            /* Space between links and icon */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 950px) {
+
+            /* Hide the default navbar links by default on mobile */
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 9;
+            }
+
+            /* Show the navbar links when the menu is toggled */
+            .navbar-links.active {
+                display: flex;
+            }
+
+            /* Show the hamburger menu icon only when width is 950px or below */
+            .menu-icon {
+                display: block;
+                margin-left: auto;
+                /* Keep icon aligned to the far right */
+            }
+
+            /* Adjust the navbar links style for mobile */
+            .navbar-links a {
+                margin: 10px 0;
+                text-align: center;
+                padding: 15px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-title">Ujjval Dhakad</div>
+
+        <!-- Navbar Links -->
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Games</a>
+            <a href="c.html">Certificates</a>
+        </div>
+
+        <!-- Hamburger Icon for Mobile (Visible when width <= 950px) -->
+        <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+    </div>
+
+    <!-- Main Content Area -->
+
+    <!-- JavaScript -->
+    <script>
+        // Function to toggle the menu visibility on small screens
+        function toggleMenu() {
+            const navbarLinks = document.querySelector('.navbar-links');
+            navbarLinks.classList.toggle('active');
+        }
+    </script>
+
+</body>
+
+</html>

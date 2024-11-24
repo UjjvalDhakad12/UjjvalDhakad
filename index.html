@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujjval Dhakad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Add some basic styles for navbar */
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Responsive styling for mobile */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 9;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar-container"></div> <!-- Navbar content will be inserted here -->
+    <div id="content-container"></div> <!-- Page content will be inserted here -->
+    <div id="footer-container"></div> <!-- Footer content will be inserted here -->
+
+    <script>
+        // Function to fetch and insert HTML content into a specific element by ID
+        function loadHTML(elementId, filePath, callback) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = '<p>Loading...</p>'; // Placeholder while loading
+
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    element.innerHTML = data;
+                    if (callback && typeof callback === 'function') {
+                        callback(); // Execute callback if provided
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading HTML:', error);
+                    element.innerHTML = '<p>Error loading content.</p>';
+                });
+        }
+
+        // Function to toggle the menu visibility on small screens
+        function initializeNavbarToggle() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const navbarLinks = document.querySelector('.navbar-links');
+
+            if (menuIcon && navbarLinks) {
+                menuIcon.addEventListener('click', function () {
+                    navbarLinks.classList.toggle('active');
+                });
+            }
+        }
+
+        // Re-initialize interactive elements if needed after content is loaded
+        function initializeContentInteractions() {
+            // Example: If buttons need to be initialized again
+            const exampleButton = document.querySelector('.example-button');
+            if (exampleButton) {
+                exampleButton.addEventListener('click', function () {
+                    alert('Button clicked!');
+                });
+            }
+        }
+
+        // Load navbar, home page content, and footer dynamically
+        window.onload = function () {
+            loadHTML('navbar-container', 'navbar.html', initializeNavbarToggle); // Load navbar and initialize toggle
+            loadHTML('content-container', 'home.html', initializeContentInteractions); // Load home page and reattach interactions
+            loadHTML('footer-container', 'footer.html'); // Load footer
+        };
+    </script>
+
+</body>
+
+</html>

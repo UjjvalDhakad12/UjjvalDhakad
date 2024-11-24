@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Styled Footer Navigation</title>
+    <style>
+        /* General Body Styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding-bottom: 60px;
+            /* Ensure footer does not overlap the content */
+        }
+
+        /* Footer Navigation Styling */
+        .footer-nav {
+            background-color: #333;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* List Style Reset and Centering */
+        .nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Individual Link Styles */
+        .nav-item .nav-link {
+            color: #ddd;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Hover Effects */
+        .nav-item .nav-link:hover {
+            color: #ffcc00;
+            transform: scale(1.1);
+        }
+
+        /* Disabled Link Style */
+        .nav-item .nav-link.disabled {
+            color: #777;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Footer Navigation -->
+    <footer class="footer-nav">
+        <ul class="nav justify-content-center">
+            <!-- GitHub Link -->
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/UjjvalDhakad12" target="_blank" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </li>
+            <!-- Instagram Link -->
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.instagram.com/ujjvaldhakad12/" target="_blank"
+                    aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </li>
+            <!-- Facebook Link -->
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.facebook.com/ujjval.dhakad.79" target="_blank"
+                    aria-label="Facebook">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </li>
+            <!-- Disabled Link -->
+            <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
