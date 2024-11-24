@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game with Gamepad Buttons</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        #gameCanvas {
+            background-color: #000;
+            border: 2px solid #333;
+            display: none;
+            /* Hide initially, show on start */
+        }
+
+        .controls {
+            margin-top: 10px;
+        }
+
+        .button {
+            padding: 15px;
+            margin: 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .scoreboard {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Gamepad Button Layout */
+        .mobile-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+            justify-items: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .mobile-button {
+            background-color: #000;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .mobile-button:hover {
+            background-color: #333;
+        }
+
+        /* Position the buttons like a game controller */
+        .triangle-button {
+            grid-column: 2;
+        }
+
+        .square-button {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .circle-button {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .cross-button {
+            grid-column: 2;
+            grid-row: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scoreboard">
+        <div>Score: <span id="score">0</span></div>
+        <div>High Score: <span id="highScore">0</span></div>
+    </div>
+
+    <button class="button" id="startButton">Start Game</button>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+    <!-- Gamepad Styled Buttons -->
+    <div class="mobile-controls">
+        <button class="mobile-button triangle-button" onclick="changeDirection('up')">⬆️</button>
+        <button class="mobile-button square-button" onclick="changeDirection('left')">⬅️</button>
+        <button class="mobile-button circle-button" onclick="changeDirection('right')">➡️</button>
+        <button class="mobile-button cross-button" onclick="changeDirection('down')">⬇️</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const startButton = document.getElementById('startButton');
+        const scoreDisplay = document.getElementById('score');
+        const highScoreDisplay = document.getElementById('highScore');
+
+        // Snake properties
+        const boxSize = 20;
+        let snake = [{ x: 9 * boxSize, y: 9 * boxSize }];
+        let direction = 'right';
+        let food;
+        let score = 0;
+        let gameInterval;
+        const highScore = localStorage.getItem('highScore') || 0;
+
+        // Initialize high score display
+        highScoreDisplay.textContent = highScore;
+
+        // Start Game Button
+        startButton.addEventListener('click', startGame);
+
+        function startGame() {
+            // Reset game settings
+            snake = [{ x: 9 * boxSize, y: 9 * boxSize }];
+            direction = 'right';
+            score = 0;
+            scoreDisplay.textContent = score;
+            generateFood();
+            canvas.style.display = 'block'; // Show the canvas
+            startButton.style.display = 'none'; // Hide the start button
+            clearInterval(gameInterval);
+            gameInterval = setInterval(gameLoop, 200);
+        }
+
+        // Generate food at a random position
+        function generateFood() {
+            food = {
+                x: Math.floor(Math.random() * 19) * boxSize,
+                y: Math.floor(Math.random() * 19) * boxSize
+            };
+        }
+
+        // Snake direction control
+        document.addEventListener('keydown', changeDirection);
+        function changeDirection(eventOrDirection) {
+            let key;
+            if (typeof eventOrDirection === 'string') {
+                key = eventOrDirection;
+            } else {
+                const keyCode = eventOrDirection.keyCode;
+                if (keyCode === 37) key = 'left';
+                if (keyCode === 38) key = 'up';
+                if (keyCode === 39) key = 'right';
+                if (keyCode === 40) key = 'down';
+            }
+
+            if (key === 'left' && direction !== 'right') direction = 'left';
+            if (key === 'up' && direction !== 'down') direction = 'up';
+            if (key === 'right' && direction !== 'left') direction = 'right';
+            if (key === 'down' && direction !== 'up') direction = 'down';
+        }
+
+        // Game loop
+        function gameLoop() {
+            // Move the snake
+            const head = { ...snake[0] };
+            if (direction === 'left') head.x -= boxSize;
+            if (direction === 'up') head.y -= boxSize;
+            if (direction === 'right') head.x += boxSize;
+            if (direction === 'down') head.y += boxSize;
+
+            // Check for collisions
+            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || collision(head, snake)) {
+                endGame();
+                return;
+            }
+
+            // Check if snake eats the food
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                scoreDisplay.textContent = score;
+                generateFood();
+            } else {
+                snake.pop(); // Remove last part if not eating
+            }
+
+            snake.unshift(head);
+
+            // Draw everything
+            drawGame();
+        }
+
+        // End the game
+        function endGame() {
+            clearInterval(gameInterval);
+            alert('Game Over! Your score: ' + score);
+
+            // Update high score if needed
+            if (score > highScore) {
+                localStorage.setItem('highScore', score);
+                highScoreDisplay.textContent = score;
+            }
+
+            startButton.style.display = 'block'; // Show the start button again
+            canvas.style.display = 'none'; // Hide the canvas
+        }
+
+        // Collision detection
+        function collision(head, snakeArray) {
+            for (let i = 0; i < snakeArray.length; i++) {
+                if (head.x === snakeArray[i].x && head.y === snakeArray[i].y) return true;
+            }
+            return false;
+        }
+
+        // Draw game
+        function drawGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw snake
+            snake.forEach((part, index) => {
+                ctx.fillStyle = index === 0 ? 'lime' : 'green';
+                ctx.fillRect(part.x, part.y, boxSize, boxSize);
+            });
+
+            // Draw food
+            ctx.fillStyle = 'red';
+            ctx.fillRect(food.x, food.y, boxSize, boxSize);
+        }
+    </script>
+</body>
+
+</html>
